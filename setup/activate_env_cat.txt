@@ -1,0 +1,4 @@
+conda activate tensorflow_0501
+source $HOME/Environments/pytorch_0501/bin/activate
+source $HOME/Environments/ultra_0502/bin/activate
+
