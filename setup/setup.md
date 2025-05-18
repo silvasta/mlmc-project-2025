@@ -145,8 +145,31 @@ else:
 ## Ultralytics
 
 ```bash
-export NAME=ultra_0502
+export NAME=ultra_0518
 python3 -m venv $HOME/Environments/$NAME
 source $HOME/Environments/$NAME/bin/activate
 pip install ultralytics
+```
+
+```bash
+# settings  dir
+"/home/silvan/.config/Ultralytics/settings.json"
+```
+
+to compress the model
+
+```bash
+pip install model_compression_toolkit
+pip install imx500-converter[pt] # maybe with [pt] or [tf]
+pip install onnx
+pip install edge-mdt-tpc
+pip install edge-mdt-cl-dev # they changed name from sony_custom_layer + added -dev
+```
+
+pip install transformers
+
+```bash
+pip install ~/Software/uni-pytorch/uni_pytorch-3.16.1-py3-none-any/dist/uni_pytorch-3.16.1-py3-none-any.whl
+
+pip install model_compression_toolkit imx500-converter[pt] onnx edge-mdt-tpc edge-mdt-cl-dev
 ```

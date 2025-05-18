@@ -3,6 +3,12 @@ from ultralytics import YOLO
 # Load a YOLO11n PyTorch model
 model = YOLO("yolo11n.pt")
 
+###################################################
+#### works with small bad outputs
+## basic test
+# model.export(format="onnx")
+###################################################
+
 # Export the model
 model.export(
     format="imx", data="coco8.yaml"

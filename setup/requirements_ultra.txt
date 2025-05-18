@@ -1,0 +1,6 @@
+model_compression_toolkit
+onnx
+imx500-converter[pt]
+edge-mdt-tpc
+edge-mdt-cl-dev
+ultralytics
