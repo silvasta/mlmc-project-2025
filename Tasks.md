@@ -4,10 +4,10 @@
 
 ### Image classification
 
-- [ ] Yolo tests on cifar
-
+- [x] Yolo tests on cifar
+  
   - [x] install
-  - [ ] run all epochs
+  - [x] run all epochs
 
 ### Image detection
 
