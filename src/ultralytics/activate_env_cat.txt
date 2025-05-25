@@ -1,1 +1,0 @@
-source $HOME/Environments/ultra_0502/bin/activate

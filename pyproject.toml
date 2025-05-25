@@ -31,6 +31,6 @@ executionEnvironments = [
   #   "src/sdk",
   # ] },
   { root = "src/lecture-exercise", venvPath = "/home/silvan/Software/miniconda3/envs", venv = "tensorflow_0501" },
-  { root = "src/ultralytics", venv = "ultra_0502" },
+  { root = "src/ultralytics", venv = "ultra_0518" },
   { root = "src" },
 ]

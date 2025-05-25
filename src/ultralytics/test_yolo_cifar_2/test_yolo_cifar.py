@@ -19,8 +19,9 @@ for batch in batches:
     model = YOLO("yolo11n-cls.pt").to(device)
     # train
     results = model.train(
-        data="../../datasets/cifar100",
-        epochs=350,
+        # data="../../datasets/cifar100",
+        data="/home/silvan/Coding/mlmc-project-2025/datasets/cifar100/",
+        epochs=200,
         batch=batch,
         imgsz=32,
     )
