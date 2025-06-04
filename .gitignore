@@ -1,6 +1,7 @@
 # custom
 datasets/*
 src/ultralytics/*.pt
+*.pt
 
 
 # Byte-compiled / optimized / DLL files
