@@ -148,15 +148,11 @@ else:
 export NAME=ultra_0518
 python3 -m venv $HOME/Environments/$NAME
 source $HOME/Environments/$NAME/bin/activate
-pip install ultralytics
+pip install ultralytics # or together with imx500-converter setup:
+pip install -r setup/requirements_ultra.txt
 ```
 
-```bash
-# settings  dir
-"/home/silvan/.config/Ultralytics/settings.json"
-```
-
-to compress the model
+STILL UNSURE:
 
 ```bash
 pip install model_compression_toolkit
@@ -164,6 +160,24 @@ pip install imx500-converter[pt] # maybe with [pt] or [tf]
 pip install onnx
 pip install edge-mdt-tpc
 pip install edge-mdt-cl-dev # they changed name from sony_custom_layer + added -dev
+```
+
+### Change settings
+
+```bash
+# access settings dir
+nvim /home/silvan/.config/Ultralytics/settings.json
+
+```
+
+Most important:
+
+```json
+{
+  *
+"datasets_dir": "/home/silvan/Coding/mlmc-project-2025/datasets",
+  *
+}
 ```
 
 pip install transformers

@@ -5,7 +5,7 @@
 ### Image classification
 
 - [x] Yolo tests on cifar
-  
+
   - [x] install
   - [x] run all epochs
 
@@ -14,11 +14,11 @@
 - [ ] Check ultralytics pipeline
   - Failure in imx500-converter
     -> try directly on pi
-- [ ] Find dataset
+- [x] Find dataset
 
-## Network Architecture Search
+## Neural Network
 
-### ML-search
+### Network Architecture Searh
 
 - [ ] Check yolo
 
@@ -27,7 +27,7 @@
 - [ ] Collect ideas
 - [ ] Build entire pipeline
 
-### Teacher/Student Model
+### Teacher-Student Model
 
 - [ ] Check lecture stuff
 - [ ] Find schnittstellen in own model

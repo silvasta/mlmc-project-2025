@@ -7,11 +7,10 @@ exclude = [
   # "src/typestubs"
 ]
 # ignore = ["src/oldstuff"]
-defineConstant = { DEBUG = true }
+# defineConstant = { DEBUG = true }
 # stubPath = "src/stubs"
 
 venvPath = "/home/silvan/Environments/"
-
 
 # reportMissingImports = "error"
 # reportMissingTypeStubs = false

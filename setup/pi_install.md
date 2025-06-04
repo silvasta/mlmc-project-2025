@@ -1,5 +1,7 @@
 # Install Pi
 
+<!-- markdownlint-configure-file { "MD013": { "line_length": 400} } -->
+
 ## Raspberry Pi Imager
 
 ### Settings GUI
@@ -177,6 +179,70 @@ imxconv-pt -i /home/silvan/Desktop/yolo11n.onnx -o /home/Desktop/ --no-input-per
 ```
 
 ## Appendix
+
+### Failure imx500-converter
+
+```bash
+silvan@rpi-bw518:~ $ pip install imx500-converter[pt] --break-system-packages
+Defaulting to user installation because normal site-packages is not writeable
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Collecting imx500-converter[pt]
+  Using cached imx500_converter-3.16.1-py3-none-any.whl (21 kB)
+Collecting sdspconv~=3.16.1
+  Using cached sdspconv-3.16.1-py3-none-any.whl (54.7 MB)
+Collecting uni-pytorch==3.16.1
+  Using cached uni_pytorch-3.16.1-py3-none-any.whl (265 kB)
+Collecting uni-model==9.0.10
+  Using cached uni_model-9.0.10-py3-none-any.whl (171 kB)
+Collecting networkx~=3.0.0
+  Using cached https://www.piwheels.org/simple/networkx/networkx-3.0-py3-none-any.whl (2.0 MB)
+Requirement already satisfied: numpy<2 in /usr/lib/python3/dist-packages (from uni-pytorch==3.16.1->imx500-converter[pt]) (1.24.2)
+Collecting mct-quantizers~=1.5.0
+  Using cached mct_quantizers-1.5.2-py3-none-any.whl (104 kB)
+Collecting packaging
+  Using cached packaging-25.0-py3-none-any.whl (66 kB)
+Collecting sony-custom-layers~=0.3.0
+  Using cached sony_custom_layers-0.3.0-py3-none-any.whl (36 kB)
+Collecting onnx==1.16.1
+  Using cached onnx-1.16.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (15.8 MB)
+Collecting onnxruntime~=1.19.2
+  Using cached onnxruntime-1.19.2-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (11.5 MB)
+Collecting onnxruntime-extensions~=0.13.0
+  Using cached onnxruntime_extensions-0.13.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (3.3 MB)
+Collecting protobuf>=3.20.2
+  Using cached protobuf-6.31.0-cp39-abi3-manylinux2014_aarch64.whl (321 kB)
+  Using cached protobuf-4.25.5-cp37-abi3-manylinux2014_aarch64.whl (293 kB)
+Collecting stringcase
+  Using cached https://www.piwheels.org/simple/stringcase/stringcase-1.2.0-py3-none-any.whl (4.1 kB)
+Collecting coloredlogs
+  Using cached https://www.piwheels.org/simple/coloredlogs/coloredlogs-15.0.1-py2.py3-none-any.whl (46 kB)
+Collecting flatbuffers
+  Using cached https://www.piwheels.org/simple/flatbuffers/flatbuffers-20181003210633-py2.py3-none-any.whl (14 kB)
+Collecting sympy
+  Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Collecting humanfriendly>=9.1
+  Using cached https://www.piwheels.org/simple/humanfriendly/humanfriendly-10.0-py2.py3-none-any.whl (89 kB)
+Collecting mpmath<1.4,>=1.1.0
+  Using cached https://www.piwheels.org/simple/mpmath/mpmath-1.3.0-py3-none-any.whl (536 kB)
+Installing collected packages: stringcase, sdspconv, onnxruntime-extensions, mpmath, flatbuffers, sympy, protobuf, packaging, networkx, imx500-converter, humanfriendly, uni-model, sony-custom-layers, onnx, mct-quantizers, coloredlogs, onnxruntime, uni-pytorch
+  WARNING: The script sdspconv is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script isympy is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts imxconv-pt and imxconv-tf are installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script humanfriendly is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts backend-test-tools, check-model and check-node are installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script coloredlogs is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script onnxruntime_test is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script uni-pytorch is installed in '/home/silvan/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed coloredlogs-15.0.1 flatbuffers-20181003210633 humanfriendly-10.0 imx500-converter-3.16.1 mct-quantizers-1.5.2 mpmath-1.3.0 networkx-3.0 onnx-1.16.1 onnxruntime-1.19.2 onnxruntime-extensions-0.13.0 packaging-25.0 protobuf-4.25.5 sdspconv-3.16.1 sony-custom-layers-0.3.0 stringcase-1.2.0 sympy-1.14.0 uni-model-9.0.10 uni-pytorch-3.16.1
+```
 
 ### Setup ssh-keypair
 
