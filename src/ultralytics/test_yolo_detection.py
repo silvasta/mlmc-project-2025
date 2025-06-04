@@ -19,7 +19,7 @@ experiment_name = "train_s_to_convergence"
 optimizer = "auto"  # SGD, Adam, AdamW, NAdam, RAdam, RMSProp
 
 resume = False
-# resume = True
+resume = True
 if resume:
     model_path = f"{project_name}/{dataset_name}/{experiment_name}/weights/last.pt"
     model = YOLO(model_path)
