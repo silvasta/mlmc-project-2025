@@ -3,29 +3,31 @@ from utils import load_device_print_information
 
 device = load_device_print_information()
 
-# dataset_name = "african-wildlife"
+dataset_name = "african-wildlife"
 # dataset_name = "coco8"
 # dataset_name = "coco128"
-dataset_name = "VisDrone"
+# dataset_name = "VisDrone"
 # VOC ???
 # xView ???
 
 data = f"{dataset_name}.yaml"
 
 project_name = "test_yolo"
-experiment_name = "train_n_to_convergence"
+# experiment_name = "train_n_to_convergence"
+experiment_name = "train_s_to_convergence"
 
 optimizer = "auto"  # SGD, Adam, AdamW, NAdam, RAdam, RMSProp
 
 resume = False
-resume = True
+# resume = True
 if resume:
     model_path = f"{project_name}/{dataset_name}/{experiment_name}/weights/last.pt"
     model = YOLO(model_path)
     ### train
     results = model.train(resume=resume)
 else:
-    model_path = "yolo11n.pt"
+    # model_path = "yolo11n.pt"
+    model_path = "yolo11s.pt"
     model = YOLO(model_path)
     ### train
     results = model.train(

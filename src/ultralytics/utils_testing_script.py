@@ -2,4 +2,5 @@ from utils import *
 
 print_ultralytics_settings()
 
-load_device_print_information()
+device = load_device_print_information()
+device = 0  # delete device, not block GPU
