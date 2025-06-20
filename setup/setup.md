@@ -144,6 +144,26 @@ else:
 
 ## Ultralytics
 
+### Change settings
+
+```bash
+# access settings dir
+nvim $HOME/.config/Ultralytics/settings.json
+
+```
+
+#### Most important
+
+```json
+{
+  **
+  "datasets_dir": "$HOME/mlmc/datasets"
+  **
+}
+```
+
+#### (Old) Environment
+
 ```bash
 export NAME=ultra_0518
 python3 -m venv $HOME/Environments/$NAME
@@ -160,24 +180,6 @@ pip install imx500-converter[pt] # maybe with [pt] or [tf]
 pip install onnx
 pip install edge-mdt-tpc
 pip install edge-mdt-cl-dev # they changed name from sony_custom_layer + added -dev
-```
-
-### Change settings
-
-```bash
-# access settings dir
-nvim /home/silvan/.config/Ultralytics/settings.json
-
-```
-
-Most important:
-
-```json
-{
-  *
-"datasets_dir": "/home/silvan/Coding/mlmc-project-2025/datasets",
-  *
-}
 ```
 
 pip install transformers

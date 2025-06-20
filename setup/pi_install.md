@@ -61,6 +61,19 @@ If the installation worked fine, the Pi should directly connect to the WLAN.
 Unfortunatelly just to the one specified at the beginning.
 Not tested with the ETH eduroam.
 
+Connected Pi with Eduroam, connection to laptop works,
+outgoing connection is broken.
+
+```bash
+# turn wifi on and off
+rfkill block wifi
+rfkill unblock wifi
+# see current stats
+rfkill
+```
+
+(Did not solve the problem)
+
 ##### Ethernet
 
 Plug the Ethernet cable to the Pi and to the Laptop.
@@ -95,7 +108,22 @@ If the hostname is properly set, one can use this approach:
 ssh silvan@rpi-bw518.local
 ```
 
-Choose `yes` if it asks for fingerprint, and it will add you to known hosts.
+Choose `yes` if it asks for fingerprint,
+and it will add you to known hosts.
+
+##### Copy files over SSH
+
+Both commands executed from laptop
+
+```bash
+# copy file from pi to laptop
+scp silvan@rpi-bw518:/home/silvan/test/bla.txt /home/silvan/Desktop
+```
+
+```bash
+# copy file from laptop to pi
+scp /home/silvan/test.py silvan@rpi-bw518.local:/home/silvan/test
+```
 
 #### Visual connection
 
@@ -135,7 +163,7 @@ sudo reboot
 ```bash
 rpicam-hello
 
-rpicam-still -o ~/Desktop/image.jpg
+rpicam-still -o test_image.jpg
 rpicam-still -o ~/Desktop/image-small.jpg --width 640 --height 480
 
 rpicam-vid -o ~/Desktop/video.mp4
