@@ -8,7 +8,7 @@ class PathHandler:
     exp_data = "experiments/african-wildlife"
     data = f"{dataset}.yaml"
     experiment_name: str = ""
-    experiment_path = f"experiment/{dataset}/{experiment_name}"
+    experiment_path = f"experiments/{dataset}/{experiment_name}"
 
     best_path = f"{experiment_path}/weights/best.pt"
     last_path = f"{experiment_path}/weights/results.pt"

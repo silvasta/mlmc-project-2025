@@ -1,0 +1,126 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <!--
+      * *****************************************************************************
+     * (c) copyright 2022 Sony Semiconductor Israel, Ltd. All rights reserved.
+     *
+     * This software, in source or object form (the "Software"), is the
+     * property of Sony Semiconductor Israel Ltd. (the "Company") and/or its
+     * licensors, which have all right, title and interest therein, You
+     * may use the Software only in  accordance with the terms of written
+     * license agreement between you and the Company (the "License").
+     * Except as expressly stated in the License, the Company grants no
+     * licenses by implication, estoppel, or otherwise. If you are not
+     * aware of or do not agree to the License terms, you may not use,
+     * copy or modify the Software. You may use the source code of the
+     * Software only for your internal purposes and may not distribute the
+     * source code of the Software, any part thereof, or any derivative work
+     * thereof, to any third party, except pursuant to the Company's prior
+     * written consent.
+     * The Software is the confidential information of the Company.
+     * ****************************************************************************
+     */
+-->
+  <xs:simpleType name="tensorFormatType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="signed"/>
+      <xs:enumeration value="unsigned"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="tensorInfo">
+      <xs:sequence>
+        <xs:element ref="dimensions"/>
+      </xs:sequence>
+      <xs:attribute name="ordinal" type="xs:unsignedByte" use="required"/>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="l2Offset" type="xs:unsignedInt" use="required"/>
+      <xs:attribute name="numOfDimensions" type="xs:unsignedByte" use="required"/>
+      <xs:attribute name="bitsPerElement" type="xs:unsignedByte" use="required"/>
+      <xs:attribute name="shift" type="xs:unsignedShort" use="required"/>
+      <xs:attribute name="scale" type="xs:float" use="required"/>
+      <xs:attribute name="format" type="tensorFormatType" use="required"/>
+  </xs:complexType>
+
+
+  <xs:complexType name="inputTensorInfo">
+    <xs:complexContent>
+      <xs:extension base="tensorInfo">
+        <xs:attribute name="persistency" type="xs:unsignedByte" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:element name="dimension">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="size" type="xs:unsignedShort" use="required" />
+          <xs:attribute name="serializationOrder" type="xs:unsignedByte" use="required"/>
+          <xs:attribute name="ordinal" type="xs:unsignedByte" use="required"/>
+          <xs:attribute name="padding" type="xs:unsignedByte" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dimensions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dimension" maxOccurs="20" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inputTensor" type="inputTensorInfo"/>
+  <xs:element name="outputTensor" type="tensorInfo"/>
+  <xs:element name="inputTensors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="inputTensor" maxOccurs="20" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="outputTensors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="outputTensor" maxOccurs="20" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="network">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="inputTensors"/>
+        <xs:element ref="outputTensors"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string"/>
+      <xs:attribute name="ordinal" type="xs:unsignedByte"/>
+      <xs:attribute name="type" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="networks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="network" maxOccurs="20" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+<xs:element name="l2memory">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="totalSize" type="xs:unsignedInt"/>
+          <xs:attribute name="coefficientsSize" type="xs:unsignedInt"/>
+          <xs:attribute name="reservedMemorySize" type="xs:unsignedInt"/>
+          <xs:attribute name="networksRuntimeSize" type="xs:unsignedInt"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dnnParams">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networks"/>
+        <xs:element ref="l2memory"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

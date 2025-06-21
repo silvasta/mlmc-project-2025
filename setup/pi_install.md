@@ -1,8 +1,8 @@
+<!-- markdownlint-configure-file { "MD013": { "line_length": 200} } -->
+
 # Install Pi
 
-<!-- markdownlint-configure-file { "MD013": { "line_length": 400} } -->
-
-## Raspberry Pi Imager
+## Raspberry Pi Imager - Setup OS
 
 ### Settings GUI
 
@@ -43,9 +43,7 @@ Card: SanDisk Extreme, 128 GB, 190/70 MB/s (read/write), adapter marked with gre
 
 See in the [appendix](#setup-ssh-keypair) for further information about ssh-keypair.
 
-## Run the Raspberry Pi
-
-### Connection
+## Connection
 
 Test connection with:
 
@@ -53,20 +51,23 @@ Test connection with:
 ping rpi-bw518.local
 ```
 
-#### Type of Connection
-
-##### WLAN
+### WLAN
 
 If the installation worked fine, the Pi should directly connect to the WLAN.
-Unfortunatelly just to the one specified at the beginning.
+Unfortunately just to the one specified at the beginning.
 Not tested with the ETH eduroam.
 
-Connected Pi with Eduroam, connection to laptop works,
+Connected Pi with eduroam, connection to laptop works,
 outgoing connection is broken.
 
+#### WIFI Trouble Shooting
+
+- Modify connection
+
 ```bash
-# turn wifi on and off
+# turn wifi on
 rfkill block wifi
+# turn wifi off
 rfkill unblock wifi
 # see current stats
 rfkill
@@ -74,19 +75,82 @@ rfkill
 
 (Did not solve the problem)
 
-##### Ethernet
+- Modify connections from command line UI
+
+```bash
+sudo nmtui
+```
+
+(not sure how good that works)
+
+- Next approach
+
+```bash
+# check connection, like `ifconfig` but only wifi
+iwconfig
+# if wlan down, f.e. from visual connection
+sudo ip link set wlan0 up
+# scan all
+sudo iwlist wlan0 scan
+# filter for important statements
+sudo iwlist wlan0 scan | grep ESSID
+# filter but in modern
+sudo iwlist wlan0 scan | rg ESSID
+# filter but in modern
+sudo iwlist wlan0 scan | rg -e ESSID -e Freq
+```
+
+The network connection didn't worked at the end...
+
+..here (at the end) the commands:
+
+<https://en.ubunlog.com/nmtui-or-nmcli-establishes-Wi-Fi-connection-from-terminal/>
+
+- This one creates **very good results**
+
+```bash
+# check if wifi is enabled
+nmcli radio wifi
+# otherwise turn on (needs sudo on pi-os)
+sudo nmcli radio wifi on
+##very nice terminal output, table with all information
+nmcli dev wifi list # use this! #TODO: attach to main manual
+# one of both
+sudo nmcli dev wifi connect {network-ssid}
+sudo nmcli dev wifi connect {network-ssid} password {network-password}
+# or this one
+sudo nmcli dev wifi connect network-ssid -a
+```
+
+```bash
+silvan@rpi-bw518:~ $ sudo nmcli dev wifi connect silvasta14 -a
+Password: ••••••••
+Device 'wlan0' successfully activated with '56aafde7-a957-47d6-8dc9-0577e793f7c5'.
+silvan@rpi-bw518:~ $
+```
+
+That one worked impressively well! Thanks to the 2 guys from:
+
+<https://unix.stackexchange.com/questions/675099/how-to-connect-to-wifi-with-nmcli>
+
+### Ethernet
 
 Plug the Ethernet cable to the Pi and to the Laptop.
+
 Set"Wired Connection" on the Laptop to "Shared to other computers"
 
-##### Setup as full computer
+Works fine with the disadvantage of the cable...
+
+### Setup Full Computer
+
+Needs:
 
 - [x] Good power supply
 - [ ] Keyboard with USB-Connection
 - [x] Mouse with USB-Connection
 - [x] Screen with cable ending at MicroHDMI
 
-#### SSH
+### SSH
 
 ```bash
 ssh [username]@[hostname].local
@@ -111,7 +175,7 @@ ssh silvan@rpi-bw518.local
 Choose `yes` if it asks for fingerprint,
 and it will add you to known hosts.
 
-##### Copy files over SSH
+#### Copy files over SSH
 
 Both commands executed from laptop
 
@@ -130,9 +194,12 @@ scp /home/silvan/test.py silvan@rpi-bw518.local:/home/silvan/test
 The basic VNC installation of the RPi failed.
 Tigervnc didn't produce good results.
 Some workarounds failed or endangered other parts of the installation.
+
 RDP worked somehow but the effort to connect from everywhere was to big.
 
-Finally a stable connection with Raspberry Pi Connect was established.
+### Rpi-Connect
+
+Finally a stable visual connection trough the internet was established with Raspberry Pi Connect.
 
 If not installed already, use this before:
 
@@ -142,7 +209,7 @@ sudo apt full-upgrade
 sudo apt install rpi-connect
 ```
 
-##### Setup rpi-connect
+### Setup rpi-connect
 
 ```bash
 rpi-connect on
@@ -151,59 +218,99 @@ rpi-connect signin
 
 Follow the link, create an account and connect the device.
 
-### Camera
+## Camera
 
 ```bash
 sudo apt install imx500-all
 sudo reboot
 ```
 
-#### Basic tests
+### Basic tests
 
 ```bash
+# standard test
 rpicam-hello
-
+# pictures with some duration, probably settings, calibration
 rpicam-still -o test_image.jpg
-rpicam-still -o ~/Desktop/image-small.jpg --width 640 --height 480
-
+# adjust size
+rpicam-still -o image-small.jpg --width 640 --height 480
+# create a video
 rpicam-vid -o ~/Desktop/video.mp4
+# only with visual connection
 vlc ~/Desktop/video.mp4
 ```
 
-On Laptop:
+### Test pre-installed Camera Models
 
 ```bash
-scp silvan@rpi-bw54:/home/silvan/Desktop/video.mp4 /home/silvan/Desktop/video.mp4
-vlc ~/Desktop/video.mp4
-```
-
-#### Testing camera features
-
-```bash
+# again the standard test
 rpicam-hello -t 0s --post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json --viewfinder-width 1920 --viewfinder-height 1080 --framerate 30
+# output with format .264?
+rpicam-vid -t 10s -o mobilenet.264 --post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json --width 1920 --height 1080 --framerate 30
 
-rpicam-vid -t 10s -o output.264 --post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json --width 1920 --height 1080 --framerate 30
-
-rpicam-vid -t 10s -o output.mp4 --post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json --width 1920 --height 1080 --framerate 30
+# output with format .mp4
+rpicam-vid -t 10s -o mobilenet.mp4 --post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json --width 1920 --height 1080 --framerate 30
 ```
 
 ```bash
-scp silvan@rpi-bw54:/home/silvan/Desktop/output.mp4  /home/silvan/Desktop/output.mp4
+# copy to laptop (in case cloud-sync not available)
+scp silvan@rpi-bw518:/home/silvan/PolyBox/test-pictures/mobilenet.mp4  /home/silvan/PolyBox/pi/test-pictures/mobilenet.mp4
 ```
 
-#### Prepare for ultralytics
+## Model
+
+### Prepare Custom Model
+
+Execute this scrips, on laptop or on pi
 
 ```bash
-scp ultralytics/yolo11n.onnx silvan@rpi-bw518.local:/home/silvan/Desktop/
+#!/bin/bash
+
+### transforms output from model compress to camera format
+
+# setup environment
+source /home/silvan/mlmc/.venv/bin/activate
+
+# input
+IMX_IN_FILE=${2:-/home/silvan/mlmc/experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_model/best_imx.onnx}
+
+# output
+IMX_OUT_NAME=${1:-"model_$(date +%F)"}
+IMX_OUT_DIR=${3:-/home/silvan/mlmc/imx_models}
+IMX_OUT_PATH="$IMX_OUT_DIR/$IMX_OUT_NAME"
+
+# test directories
+echo "$IMX_IN_FILE"
+echo "$IMX_OUT_PATH"
+
+# finally, do the conversion
+imxconv-pt -i "$IMX_IN_FILE" -o "$IMX_OUT_PATH" --no-input-persistency --overwrite-output
+```
+
+(in case the model is not automatically converted by the Sony model compression toolkit)
+
+### Load Custom Model
+
+```bash
+# needs to be installed
+sudo apt install imx500-tools
 ```
 
 ```bash
-python -m venv ptv1
-pip install imx500-converter[pt]
+# generic
+imx500-package -i <path to packerOut.zip> -o <output folder>
+# in case you are in the folder with the zip and wants the model there
+imx500-package -i packerOut.zip  -o .
 ```
 
 ```bash
-imxconv-pt -i /home/silvan/Desktop/yolo11n.onnx -o /home/Desktop/ --no-input-persistency
+# result should look like this
+silvan@rpi-bw518:~/mlmc/imx_models/yolo_n_1 $ ls
+best_imx.pbtxt  best_imx_MemoryReport.json  dnnParams.xml  network.rpk  packer  packerOut.zip
+```
+
+```bash
+python imx500_object_detection_demo_mp.py --model yolo_n_1/network.rpk --fps 17 --bbox-normalization --labels labels.txt
 ```
 
 ## Appendix
