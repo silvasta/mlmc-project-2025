@@ -13,10 +13,11 @@ ph = PathHandler
 device = load_device_print_information()
 
 model_types = [
-    "train_n_to_convergence_all",
-    "train_n_to_convergence",
-    "train_s_to_convergence_all",
-    "train_s_to_convergence",
+    # "train_n_to_convergence_all",
+    # "train_n_to_convergence",
+    # "train_s_to_convergence_all",
+    # "train_s_to_convergence",
+    "train_l_to_convergence_all",
     # "n",
     # "s",
     # "m",
@@ -38,7 +39,7 @@ for name in model_types:
             data=ph.data,
             fraction=1,
             device=device,
-            name=f"imx_model/{name}_final",
+            name=f"imx_model/{name}_end",
         )
     except:
         print()

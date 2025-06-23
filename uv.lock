@@ -559,7 +559,6 @@ dependencies = [
     { name = "imx500-converter", extra = ["pt"] },
     { name = "model-compression-toolkit" },
     { name = "onnx" },
-    { name = "polars" },
     { name = "ultralytics" },
 ]
 
@@ -576,21 +575,28 @@ cu128 = [
     { name = "torchvision", version = "0.22.1+cu128", source = { registry = "https://download.pytorch.org/whl/cu128" }, marker = "(platform_machine != 'aarch64' and extra == 'extra-4-mlmc-cu128') or (sys_platform != 'linux' and extra == 'extra-4-mlmc-cu128') or (extra == 'extra-4-mlmc-cpu' and extra == 'extra-4-mlmc-cu128')" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "polars" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "edge-mdt-cl", specifier = ">=1.0.0" },
     { name = "edge-mdt-tpc", specifier = ">=1.1.0" },
-    { name = "imx500-converter", extras = ["pt"], specifier = ">=3.16.1" },
+    { name = "imx500-converter", extras = ["pt"], specifier = ">=3.16.0" },
     { name = "model-compression-toolkit", specifier = ">=2.3.0" },
     { name = "onnx", specifier = ">=1.16.1" },
-    { name = "polars", specifier = ">=1.31.0" },
     { name = "torch", marker = "extra == 'cpu'", specifier = ">=2.7.0", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "mlmc", extra = "cpu" } },
     { name = "torch", marker = "extra == 'cu128'", specifier = ">=2.7.0", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "mlmc", extra = "cu128" } },
     { name = "torchvision", marker = "extra == 'cpu'", specifier = ">=0.22.0", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "mlmc", extra = "cpu" } },
     { name = "torchvision", marker = "extra == 'cu128'", specifier = ">=0.22.0", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "mlmc", extra = "cu128" } },
-    { name = "ultralytics", specifier = ">=8.3.152" },
+    { name = "ultralytics", specifier = ">=8.3.0" },
 ]
 provides-extras = ["cpu", "cu128"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "polars" }]
 
 [[package]]
 name = "model-compression-toolkit"

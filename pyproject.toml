@@ -5,14 +5,17 @@ description = "machine learning on micro controller"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "ultralytics>=8.3.152",
-  "imx500-converter[pt]>=3.16.1",
+  "ultralytics>=8.3.0",
+  "imx500-converter[pt]>=3.16.0",
   "edge-mdt-tpc>=1.1.0",
   "edge-mdt-cl>=1.0.0",
-  "polars>=1.31.0",
-  "onnx>=1.16.1",
   "model-compression-toolkit>=2.3.0",
+  "onnx>=1.16.1",
 ]
+
+[dependency-groups]
+dev = ["polars"]
+
 [project.optional-dependencies]
 cpu = ["torch>=2.7.0", "torchvision>=0.22.0"]
 cu128 = ["torch>=2.7.0", "torchvision>=0.22.0"]
