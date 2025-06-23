@@ -9,9 +9,27 @@ ph = PathHandler
 
 def main():
     # plot_awl()
-    plot_cifar()
+    # plot_cifar()
     # all_results()
-    # all_detection()
+    all_detection()
+    # plot_inference()
+
+
+def plot_inference():
+    models = [
+        "n_640",
+        "n_to_conv_03-34",
+        "n_to_conv_03-38",
+        "s_to_conv_03-41",
+        "s_to_conv_03-49",
+        "yolo_n_1",
+    ]
+    times = [73.27, 73.10, 73.73, 73.21, 73.25, 73.25]
+    plt.bar(models, times)
+    plt.title("Inference Time per Model")
+    plt.ylabel("Time (ms)")
+    plt.xticks(rotation=45)
+    plt.savefig("plots/inference_times.png")
 
 
 def plot_awl():
@@ -75,10 +93,8 @@ def plot_awl():
 
 def all_results():
     all_results = [
-        "experiments/VisDrone/initial_setup/results.csv",
         "experiments/VisDrone/train_n_to_convergence/result_200/results_end_200.csv",
         "experiments/VisDrone/train_n_to_convergence/results.csv",
-        "experiments/african-wildlife/initial_setup/results.csv",
         "experiments/african-wildlife/train_l_to_convergence/results.csv",
         "experiments/african-wildlife/train_l_to_convergence_all/results.csv",
         "experiments/african-wildlife/train_m_to_convergence/results.csv",
@@ -104,9 +120,7 @@ def all_results():
         "experiments/cifar_2/runs/classify/train5/results.csv",
         "experiments/cifar_2/runs/classify/train6/results.csv",
         "experiments/cifar_2/runs/classify/train7/results.csv",
-        "experiments/coco128/initial_setup/results.csv",
         "experiments/coco128/train_n_to_convergence/results.csv",
-        "experiments/coco8/initial_setup/results.csv",
         "experiments/coco8/train_n_to_convergence/results.csv",
         "experiments/coco8/train_n_to_convergence2/results.csv",
     ]
@@ -117,23 +131,19 @@ def all_results():
 
 def all_detection():
     results = [
-        # "experiments/VisDrone/initial_setup/results.csv",
         # "experiments/VisDrone/train_n_to_convergence/result_200/results_end_200.csv",
         # "experiments/VisDrone/train_n_to_convergence/results.csv",
-        # "experiments/african-wildlife/initial_setup/results.csv",
-        # "experiments/african-wildlife/train_l_to_convergence/results.csv",
-        # "experiments/african-wildlife/train_l_to_convergence_all/results.csv",
-        # "experiments/african-wildlife/train_m_to_convergence/results.csv",
+        "experiments/african-wildlife/train_l_to_convergence/results.csv",
+        "experiments/african-wildlife/train_l_to_convergence_all/results.csv",
+        "experiments/african-wildlife/train_m_to_convergence/results.csv",
         "experiments/african-wildlife/train_m_to_convergence_all/results.csv",
         "experiments/african-wildlife/train_n_to_convergence/results.csv",
         "experiments/african-wildlife/train_n_to_convergence_all/results.csv",
-        # "experiments/african-wildlife/train_s_to_convergence/results.csv",
+        "experiments/african-wildlife/train_s_to_convergence/results.csv",
         "experiments/african-wildlife/train_s_to_convergence_all/results.csv",
-        # "experiments/african-wildlife/train_x_to_convergence/results.csv",
-        # "experiments/african-wildlife/train_x_to_convergence_all/results.csv",
-        # "experiments/coco128/initial_setup/results.csv",
+        "experiments/african-wildlife/train_x_to_convergence/results.csv",
+        "experiments/african-wildlife/train_x_to_convergence_all/results.csv",
         # "experiments/coco128/train_n_to_convergence/results.csv",
-        # "experiments/coco8/initial_setup/results.csv",
         # "experiments/coco8/train_n_to_convergence/results.csv",
         # "experiments/coco8/train_n_to_convergence2/results.csv",
     ]
@@ -143,8 +153,8 @@ def all_detection():
         # "train/box_loss",
         # "train/cls_loss",
         # "train/dfl_loss",
-        # "metrics/precision(B)",
-        # "metrics/recall(B)",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
         "metrics/mAP50(B)",
         "metrics/mAP50-95(B)",
         # "val/box_loss",

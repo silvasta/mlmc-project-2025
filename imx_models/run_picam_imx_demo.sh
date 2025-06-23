@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # choose the desired demo task
-# DEMO_FILE=imx500_object_detection_demo.py
-DEMO_FILE=imx500_object_detection_demo_mp.py
+
+DEMO_FILE=imx500_object_detection_demo.py
+# DEMO_FILE=imx500_object_detection_demo_mp.py
 
 # set the model
 MODEL=yolo_n_1/network.rpk

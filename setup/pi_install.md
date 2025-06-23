@@ -348,6 +348,113 @@ python $DEMO_FILE --model $MODEL --fps "$FRAMES" --labels $LABELS "${OPTS[@]}"
 # echo $DEMO_FILE --model $MODEL --fps "$FRAMES" --labels $LABELS "${OPTS[@]}"
 ```
 
+## Final Result
+
+```bash
+silvan@rpi-bw518:~/mlmc/imx_models $ python evaluate_models.py
+[0:19:37.865028976] [2917]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:19:37.871893334] [2921]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:19:37.880960330] [2921]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+done
+silvan@rpi-bw518:~/mlmc/imx_models $ python evaluate_models.py
+[0:21:28.884163009] [2929]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:21:28.891043681] [2933]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:21:28.900237886] [2933]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+0
+done
+silvan@rpi-bw518:~/mlmc/imx_models $ python evaluate_models.py
+[0:30:50.078800959] [2957]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:30:50.085730290] [2961]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:30:50.094836645] [2961]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:30:50.107838435] [2957]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:30:50.107948306] [2961]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+Model yolo_n_1/network.rpk: Avg Inference Time = 73.27 ms, FPS = 13.65
+done
+silvan@rpi-bw518:~/mlmc/imx_models $ python evaluate_models.py
+[0:31:53.948954689] [3027]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:31:53.956022651] [3031]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:31:53.965237397] [3031]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:31:54.012491459] [3027]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:31:54.012615367] [3031]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+[0:32:01.890944003] [3035]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:32:01.901106121] [3093]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:32:01.914527377] [3093]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:32:01.965315227] [3035]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:32:01.965536894] [3093]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+[0:33:02.483082698] [3097]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:33:02.493733318] [3177]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:33:02.507199020] [3177]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:33:02.558663857] [3097]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:33:02.558920376] [3177]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+[0:33:23.366459190] [3181]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:33:23.373422319] [3259]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:33:23.382827714] [3259]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:33:23.429620467] [3181]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:33:23.429828967] [3259]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+[0:34:48.411641403] [3263]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:34:48.418600330] [3313]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:34:48.428051504] [3313]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:34:48.477859509] [3263]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:34:48.477978824] [3313]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+[0:36:14.345155671] [3317]  INFO Camera camera_manager.cpp:326 libcamera v0.5.0+59-d83ff0a4
+[0:36:14.355767478] [3386]  INFO RPI pisp.cpp:720 libpisp version v1.2.1 981977ff21f3 29-04-2025 (14:13:50)
+[0:36:14.369972388] [3386]  INFO RPI pisp.cpp:1179 Registered camera /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a to CFE device /dev/media0 and ISP device /dev/media1 using PiSP variant BCM2712_D0
+
+------------------------------------------------------------------------------------------------------------------
+NOTE: Loading network firmware onto the IMX500 can take several minutes, please do not close down the application.
+------------------------------------------------------------------------------------------------------------------
+
+[0:36:14.384925059] [3317]  INFO Camera camera.cpp:1205 configuring streams: (0) 640x480-XBGR8888 (1) 2028x1520-RGGB_PISP_COMP1
+[0:36:14.385055745] [3386]  INFO RPI pisp.cpp:1483 Sensor: /base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a - Selected sensor format: 2028x1520-SRGGB10_1X10 - Selected CFE format: 2028x1520-PC1R
+Model n_640/network.rpk: Avg Inference Time = 73.27 ms, FPS = 13.65
+Model n_to_convergence_all-2025-06-23_03-34-40/network.rpk: Avg Inference Time = 73.10 ms, FPS = 13.68
+Model n_to_convergence_all-2025-06-23_03-38-14/network.rpk: Avg Inference Time = 73.73 ms, FPS = 13.56
+Model s_to_convergence-2025-06-23_03-41-47/network.rpk: Avg Inference Time = 73.21 ms, FPS = 13.66
+Model s_to_convergence_all-2025-06-23_03-49-35/network.rpk: Avg Inference Time = 73.25 ms, FPS = 13.65
+Model yolo_n_1/network.rpk: Avg Inference Time = 73.25 ms, FPS = 13.65
+silvan@rpi-bw518:~/mlmc/imx_models $
+```
+
 ## Appendix
 
 ### Failure imx500-converter

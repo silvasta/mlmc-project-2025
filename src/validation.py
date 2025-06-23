@@ -22,12 +22,12 @@ models = [
 ]
 models += [
     # onnx
-    # "experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_model/best_imx.onnx",
+    "experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_model/best_imx.onnx",
     "experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_pqt/best_imx.onnx",
     "experiments/african-wildlife/train_s_to_convergence/weights/best_imx_model/best_imx.onnx",
     "experiments/african-wildlife/train_s_to_convergence_all/weights/best_imx_model/best_imx.onnx",
     # VisDrone
-    "experiments/VisDrone/train_n_to_convergence/weights/best.pt",
+    # "experiments/VisDrone/train_n_to_convergence/weights/best.pt",
 ]
 
 for path in models:
@@ -43,13 +43,13 @@ for path in models:
     # load model
     model = YOLO(path)
     metrics = model.val(
-        # data=data,
-        # # device=device,
-        # # imgsz=640,
-        # project=project,
-        # name=name,
-        # val=True,
-        # plots=True,
+        data=data,
+        # device=device,
+        # imgsz=640,
+        project=project,
+        name=name,
+        val=True,
+        plots=True,
     )
     file = metrics.to_df().to_csv(f"{project}/{name}/metric.csv")
 
