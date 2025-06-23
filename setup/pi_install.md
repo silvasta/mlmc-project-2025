@@ -259,7 +259,7 @@ scp silvan@rpi-bw518:/home/silvan/PolyBox/test-pictures/mobilenet.mp4  /home/sil
 
 ## Model
 
-### Prepare Custom Model
+### Convert Custom Model
 
 Execute this scrips, on laptop or on pi
 
@@ -289,7 +289,11 @@ imxconv-pt -i "$IMX_IN_FILE" -o "$IMX_OUT_PATH" --no-input-persistency --overwri
 
 (in case the model is not automatically converted by the Sony model compression toolkit)
 
-### Load Custom Model
+Results in a folder with an `packerOut.zip file`
+
+### Prepare Custom Model
+
+From here on Pi!
 
 ```bash
 # needs to be installed
@@ -311,6 +315,37 @@ best_imx.pbtxt  best_imx_MemoryReport.json  dnnParams.xml  network.rpk  packer  
 
 ```bash
 python imx500_object_detection_demo_mp.py --model yolo_n_1/network.rpk --fps 17 --bbox-normalization --labels labels.txt
+```
+
+### Load Custom Model
+
+The picamera demo test is sufficient for basic tests
+
+```bash
+#!/bin/bash
+
+# choose the desired demo task
+# DEMO_FILE=imx500_object_detection_demo.py
+DEMO_FILE=imx500_object_detection_demo_mp.py
+
+# set the model
+MODEL=yolo_n_1/network.rpk
+
+# choose frames or pass as argument
+FRAMES=${1:-17} # default=17
+
+# class labels for dataset
+LABELS=labels.txt
+
+# additional options
+declare -a OPTS
+OPTS=(
+  --bbox-normalization
+)
+
+python $DEMO_FILE --model $MODEL --fps "$FRAMES" --labels $LABELS "${OPTS[@]}"
+
+# echo $DEMO_FILE --model $MODEL --fps "$FRAMES" --labels $LABELS "${OPTS[@]}"
 ```
 
 ## Appendix

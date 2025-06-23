@@ -9,9 +9,9 @@ ph = PathHandler
 
 def main():
     # plot_awl()
-    # plot_cifar()
+    plot_cifar()
     # all_results()
-    all_detection()
+    # all_detection()
 
 
 def plot_awl():
@@ -19,7 +19,7 @@ def plot_awl():
     print("african-wildlife - create plots from csv")
     select = [
         # "epoch",
-        "time",
+        # "time",
         # "train/box_loss",
         # "train/cls_loss",
         # "train/dfl_loss",
@@ -236,32 +236,34 @@ def plot_cifar():
         # "time",
         "metrics/accuracy_top1",
         "metrics/accuracy_top5",
-        "train/loss",
-        "val/loss",
+        # "train/loss",
+        # "val/loss",
         # "lr/pg0",
         # "lr/pg1",
         # "lr/pg2",
     ]
-    fig, axs = plt.subplots(nrows=len(select), ncols=1, figsize=(12, 16))
+    fig, axs = plt.subplots(ncols=len(select), nrows=1, figsize=(20, 5))
 
+    legend = []
+    for exp in cifar:
+        name = exp.split("/")[1] + " - " + exp.split("/")[4]
+        legend += [name]
     for result in cifar:
         print(result)
         df = pl.read_csv(result)
         for i, s in enumerate(select):
             selected = df.select(pl.col(s))
             extracted = pl.Series(selected).to_list()
+            if len(extracted) > 230:
+                extracted = extracted[0:230]
             axs[i].plot(extracted)
 
     for i, s in enumerate(select):
         axs[i].set_ylabel(s, fontsize=16)
 
-    legend = []
-    for exp in cifar:
-        name = exp.split("/")[1] + " - " + exp.split("/")[4]
-        legend += [name]
     plt.legend(legend)
-
-    name = input("\nchoose plot name: ... \n\n")
+    # name = input("\nchoose plot name: ... \n\n")
+    name = "top_1_5"
 
     plt.savefig(f"plots/cifar/{name}.png")
     plt.savefig(f"plots/cifar/{name}.svg")

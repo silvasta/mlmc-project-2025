@@ -20,9 +20,14 @@ declare -a OPTS
 OPTS=(
   --no-input-persistency
   --overwrite-output
-  --memory-report
+  # --memory-report # only report, without conversion
 )
-array=("$model_1" "$model_2" "$model_3" "$model_4")
+array=(
+  "$model_1"
+  "$model_2"
+  "$model_3"
+  "$model_4"
+)
 
 for relative in "${array[@]}"; do
 
@@ -32,8 +37,7 @@ for relative in "${array[@]}"; do
   # output
   # IMX_FOLDERNAME=${1:-"model"}
   IMX_FOLDERNAME=$"$relative"
-  IMX_OUT_NAME="$IMX_FOLDERNAME-$(date +%F)-$(date +%R)"
-  # IMX_OUT_NAME=${1:-"model_$(date +%F)-$(date +%R)"}
+  IMX_OUT_NAME="$IMX_FOLDERNAME-$(date +%F_%H-%M-%S)"
   IMX_OUT_DIR="$project_home/imx_models"
   IMX_OUT_PATH="$IMX_OUT_DIR/$IMX_OUT_NAME"
 
@@ -43,11 +47,11 @@ for relative in "${array[@]}"; do
   # echo -i "$IMX_IN_FILE" -o "$IMX_OUT_PATH" "${OPTS[@]}"
 done
 
-IMX_IN_FILE=experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_pqt/best_imx.onnx
+IMX_IN_FILE=/home/silvan/mlmc/experiments/african-wildlife/train_n_to_convergence_all/weights/best_imx_pqt/best_imx.onnx
 
 # output
 IMX_FOLDERNAME=best_imx_pqt
-IMX_OUT_NAME="$IMX_FOLDERNAME-$(date +%F)-$(date +%R)"
+IMX_OUT_NAME="$IMX_FOLDERNAME-$(date +%F_%H-%M-%S)"
 IMX_OUT_DIR="$project_home/imx_models"
 IMX_OUT_PATH="$IMX_OUT_DIR/$IMX_OUT_NAME"
 
